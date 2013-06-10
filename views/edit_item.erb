@@ -1,0 +1,23 @@
+<h1>Who are you?</h1>
+
+<form method="post" action="/update_item">
+  <input type="text" name="person[name]" value="<%= @person.name %> ">
+ <h1>For which potluck?</h1>
+ <input type="text" name="potluck[name]" value="<%= @potluck.name %>">
+  <br>
+<h1>What are you going to bring?</h1>
+It's called:<input type="text" name="item[name]" value="<%= @item.name %>">
+
+  <!--Here is where I set up the check boxes to add tags into to the bridge between item and tags -->
+ <br>Tag It!:<br>
+  <% Tag.all.each do |tag| %>
+    <input type="checkbox" name="item[tag_ids][]" value="<%= @list_of_tags %>">
+    <%= tag.name %>
+    <br>
+  <% end %>
+    <br>
+
+  <button class="btn"> Bring it! </button>
+  <br>
+
+</form>

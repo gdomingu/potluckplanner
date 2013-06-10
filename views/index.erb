@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<h1> We help you plan your potlucks!</h1>
+
+<% @potlucks.each do |potluck| %>
+<p>Potluck Name: <%= potluck.name %>
+<a href="/edit_potluck/<%= potluck.id %>">Edit</a>
+<a href="/view_potluck/<%= potluck.id %>">View</a></p>
+
+
+<% end %>
+<a href="/new_potluck"> New Potluck</a>
+</html>

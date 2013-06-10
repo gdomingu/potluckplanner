@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<h1> Page of <%= @potluck.name %> potluck!! PARRRTYYY </h1>
+<br>
+<!-- Ideally this would bring you to a separate page where you can fill out your name and what you are going to bring, and add tags to it. -->
+<h3> Sign up<h3>
+<form method="get" action="/new_item">
+   <input type="hidden" name="potluck_id" value="<%= @potluck.id %>">
+    <button>Bring Something!</button>
+</form>
+
+
+<!-- This table will have three columns, 1:Name of food/drink, 2: Tags(Spicy, entree, dessert and 3: Claimed by person.name OR if person.name is blank then put a link to a page where you can claim it-->
+<br>
+<h3> Who is bringing what?</h3>
+
+<table class="table table-striped">
+   <tr>
+    <td>Chow & Drank</td>
+    <td> Tags </td>
+    <td> Who's Bringing? </td>
+  </tr>
+    <% @potluck.items.each do |item| %>
+  <tr>
+    <!--this crazy link will take me to an edit page similar to the "add item" page only with all the fields filled in. Need to figure out a way to only link to this edit page if an person ID is present and if not link to a page with only potluck id and item id filled out. Also need to consider how to make a "claim" button show up if there is no person id associated with the item id.  -->
+    <td><%= item.name %> <a href="/edit_item/<%= item.id %>/<%= @potluck.id %>/<%= item.person.id if item.person %>">Edit Item</a></td>
+    <td><%= item.list_of_tags %></td>
+        <td><%= item.person.name if item.person : "claim" %> </td>
+    <% end %>
+
+  </tr>
+<table>
+
+
+</html>
